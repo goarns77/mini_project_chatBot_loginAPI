@@ -9,7 +9,7 @@ import com.google.genai.types.Part;
 
 import java.util.List;
 
-public class GenAIChatProvider implements ChatProvider {
+public class GroqChatProvider implements ChatProvider {
 
     // 단일 챗
     @Override
@@ -47,13 +47,13 @@ public class GenAIChatProvider implements ChatProvider {
         }
     }
 
-    private GenAIChatProvider() {
+    private GroqChatProvider() {
 
     }
 
-    private static final GenAIChatProvider instance = new GenAIChatProvider();
+    private static final GroqChatProvider instance = new GroqChatProvider();
 
-    public static GenAIChatProvider getInstance() {
+    public static GroqChatProvider getInstance() {
         return instance;
     }
 

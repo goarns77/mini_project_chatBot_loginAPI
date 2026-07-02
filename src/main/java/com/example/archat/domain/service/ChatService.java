@@ -13,7 +13,7 @@ public interface ChatService {
 
     // sessionId -> userId
     // 전체 데이터를 불러오기
-    List<Chat> findArrByUserId(String userId);
+    List<Chat> findAllByUserId(String userId);
 
     void save(Chat chat);
 }
