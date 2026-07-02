@@ -1,5 +1,6 @@
 package com.example.archat.controller;
 import com.example.archat.controller.dto.ChatResponseDTO;
+import com.example.archat.model.Chat;
 import com.example.archat.service.ChatService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.time.ZonedDateTime;
 
 @WebServlet("/chat")
 public class ChatController extends BaseController {
@@ -43,4 +45,17 @@ public class ChatController extends BaseController {
     }
 
     // post
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Chat chat = new Chat(
+                req.getParameter("message"),
+                "USER",
+                req.getSession().getId(),
+                req.getParameter("model"),
+                ZonedDateTime.now().toString()
+        );
+        chatService.sendMessage(chat);
+        resp.sendRedirect("%s/%s".formatted(req.getContextPath(), "chat.jsp"));
+    }
 }
